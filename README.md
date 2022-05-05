@@ -1,16 +1,31 @@
 # meta_writer
 ## Python script that lets you change creation && modified date of files in multiple subdirectories.
 
-Usage: python3 meta_writer/ [-h] -d DIRECTORY -e EXTENSION -s SHIFT [-o | --overwrite | --no-overwrite] [-r | --relative-shift | --no-relative-shift]
- - -d/--directory -> Source directory to find files in (loops through all subdirectories)
+Usage: . [-h] -d DIRECTORY [-sub] -e EXTENSION -s SHIFT [-o] [-r] [-v] [-cd] [-md]
 
- - -e/--extension -> File extension of files to process (txt, jpg, etc.)
+Mass change creation/modification date of files with certain extension.
 
- - -s/--shift -> Shift [int] in days [-7=(week before), 7=(week after)]
+optional arguments:
+  -h, --help            show this help message and exit
+  -d DIRECTORY, --directory DIRECTORY
+                        The directory to be processed.
+  -sub, --subdirectories
+                        If set, the program will also process all files in all subdirectories.
+  -e EXTENSION, --extension EXTENSION
+                        File extension to be processed. (* for everything)
+  -s SHIFT, --shift SHIFT
+                        The amount of days to shift the creation date.
+  -o, --overwrite       Overwrites metadata. (otherwise wont commit changes)
+  -r, --relative-shift  If set, shifts relatively to creation date of file.
+  -v, --verbose         If set, the program will print all metadata of file + some debug info.
+  -cd, --change-creation-date
+                        If set, the program will modify the creation date of file.
+  -md, --change-modify-date
+                        If set, the program will modify the updated date of file.
 
- - -o/--overwrite -> Overwrites metadata (Needs to be set to make changes)
-
- - -r/--relative-shift -> Shifts relatively to creation time of proccessed file, otherwise shifts relatively to current time
+note:
+-cd and -md are both set by default
+if you set just one, only that one will be modified :)
 
 ```
 python3 meta_writer/ -d ~/Desktop/test -e txt -s 1 -o
