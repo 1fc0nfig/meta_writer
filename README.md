@@ -1,6 +1,6 @@
 # meta_writer
 ## Python script that lets you change creation && modified date of files in multiple subdirectories.
-
+```
 Usage: . [-h] -d DIRECTORY [-sub] -e EXTENSION -s SHIFT [-o] [-r] [-v] [-cd] [-md]
 
 Mass change creation/modification date of files with certain extension.
@@ -22,7 +22,7 @@ optional arguments:
                         If set, the program will modify the creation date of file.
   -md, --change-modify-date
                         If set, the program will modify the updated date of file.
-
+```
 note:
 -cd and -md are both set by default
 if you set just one, only that one will be modified :)
