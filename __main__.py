@@ -27,6 +27,7 @@ def main(directory, extension, shift, overwrite, relative_shift):
                         try:
                             # set a variable with updated time and shift it by shift (days)
                             if relative_shift:
+                                print
                                 updated_time = metadata.st_birthtime + (shift * 86400)
                             else:
                                 updated_time = time.time() + (shift * 86400)
@@ -54,5 +55,22 @@ def main(directory, extension, shift, overwrite, relative_shift):
         print("\nExiting...")
         exit(1)
     return 0
+
+# function that returns creation date of file
+def get_creation_date(file_path):
+    return os.stat(file_path).st_birthtime
+
+# function that returns updated date of file
+def get_updated_date(file_path):
+    return os.stat(file_path).st_mtime
+
+# function that prints all metadata of file
+def print_metadata(file_path):
+    metadata = os.stat(file_path)
+    print(f"Created: {time.ctime(metadata.st_birthtime)}")
+    print(f"Updated: {time.ctime(metadata.st_mtime)}")
+    print(f"Accessed: {time.ctime(metadata.st_atime)}")
+    print(f"Changed: {time.ctime(metadata.st_ctime)}")  
+    pass
 
 main(**vars(parser.parse_args()))
