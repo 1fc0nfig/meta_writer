@@ -2,9 +2,9 @@ import sys
 import os
 import argparse
 import time
+import re
 from subprocess import call
 
-from isort import file
 
 # Initialize argument parser
 parser = argparse.ArgumentParser(description='Runs the main program.')
@@ -161,6 +161,8 @@ def modify_creation_date(absolute_file_path, creation_date):
     creation_date_str = time.strftime("%m/%d/%Y", time.gmtime(creation_date))
     # parse creation time into HH:MM:SS format in creation_time_str
     creation_time_str = time.strftime("%H:%M:%S", time.gmtime(creation_date))
+    # escape spaces and special characters in absolute_file_path
+    absolute_file_path = re.escape(absolute_file_path)
     # Exec time change (MacOS) specific
     try:
         command = 'SetFile -d ' + f'"{creation_date_str} "' + f'{creation_time_str} ' + absolute_file_path
